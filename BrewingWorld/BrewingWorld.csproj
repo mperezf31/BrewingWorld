@@ -21,8 +21,4 @@
     <Folder Include="Services\NavigationService\" />
     <Folder Include="Controls\" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="ViewModels\BeerListViewModel %28copia%29.cs" />
-    <Compile Remove="ViewModels\BeerListViewModel %28copia%29.cs" />
-  </ItemGroup>
 </Project>

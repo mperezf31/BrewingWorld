@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BrewingWorld.Views.BeerDetailPage" xmlns:vm="clr-namespace:BrewingWorld.ViewModels" Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:BeerDetailViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" Padding="15">
+                <Image Source="{Binding BeerData.Images.Medium}" />
+                <Label Text="{Binding BeerData.Description}" FontSize="Small" />
+                <Label Text="{Binding BeerData.Style.Name}" FontSize="Medium" />
+                <Label Text="{Binding BeerData.Style.Description}" FontSize="Small" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

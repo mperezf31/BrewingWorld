@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BrewingWorld.Models;
 using BrewingWorld.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace BrewingWorld.Views
 {
@@ -33,6 +28,19 @@ namespace BrewingWorld.Views
 
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
+        }
+
+
+        void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            var item = args.SelectedItem as Beer;
+            if (item == null)
+                return;
+
+            viewModel.ItemSelected(item);
+            
+            // Manually deselect item.
+            ((ListView)sender).SelectedItem = null;
         }
 
 

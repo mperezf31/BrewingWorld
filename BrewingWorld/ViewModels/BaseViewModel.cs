@@ -10,7 +10,6 @@ namespace BrewingWorld.ViewModels
         string title = string.Empty;
 
 
-
         public bool IsBusy
         {
             get { return isBusy; }

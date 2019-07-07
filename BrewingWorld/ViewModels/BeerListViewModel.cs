@@ -19,8 +19,6 @@ namespace BrewingWorld.ViewModels
         private readonly IRestDataService restDataService;
         private readonly INavigationService navigationService;
 
-        private Beer itemData;
-
 
         public BeerListViewModel()
         {
@@ -35,24 +33,13 @@ namespace BrewingWorld.ViewModels
 
         }
 
-
+      
         public ObservableCollection<Beer> Items { get; set; }
 
 
-        public Beer ItemData
+        public void ItemSelected(Beer beer)
         {
-            get { return itemData; }
-            set
-            {
-                itemData = value;
-                Beer selected = value;
-                ItemData = null;
-                if (selected != null)
-                {
-                    navigationService.NavigateToBeerDetail(selected);
-                }
-
-            }
+            navigationService.NavigateToBeerDetail(beer);
         }
 
 
