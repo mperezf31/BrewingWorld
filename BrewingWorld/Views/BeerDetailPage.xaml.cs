@@ -14,5 +14,6 @@ namespace BrewingWorld.Views
 
             BindingContext = this.viewModel = viewModel;
         }
+
     }
 }

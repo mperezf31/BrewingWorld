@@ -6,11 +6,12 @@
     
     
     <ContentView.Content>
-        <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="Gray">
+        <StackLayout Orientation="Horizontal" Padding="5">
+
             <Image WidthRequest="40" HeightRequest="40" Aspect="AspectFit" Source="{Binding Source={x:Reference this}, Path= BeerItemData.Images.Medium}" />
-            <StackLayout Orientation="Vertical">
-                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Name}" />
-                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Style.ShortName}" />
+            <StackLayout Orientation="Vertical"  Spacing="0" >
+                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Name}" FontAttributes="Bold"/>
+                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Style.ShortName}" FontSize="13" />
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

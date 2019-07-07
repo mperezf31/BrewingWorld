@@ -1,42 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             Title="{Binding Title}" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:vm="clr-namespace:BrewingWorld.ViewModels"
-             xmlns:controls="clr-namespace:BrewingWorld.Controls"
-             x:Class="BrewingWorld.Views.BeerListViewPage">
-   
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" Title="{Binding Title}" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:BrewingWorld.ViewModels" xmlns:controls="clr-namespace:BrewingWorld.Controls" x:Class="BrewingWorld.Views.BeerListViewPage">
     <ContentPage.BindingContext>
         <vm:BeerListViewModel />
     </ContentPage.BindingContext>
-    
     <ContentPage.Content>
-        
-      <RelativeLayout>
-
+        <RelativeLayout>
             <ListView ItemsSource="{Binding Items}" ItemSelected="OnItemSelected" CachingStrategy="RecycleElement">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                             <controls:BeerItemCustom BeerItemData="{Binding .}"/>        
+                            <controls:BeerItemCustom BeerItemData="{Binding .}" />
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-             
-                 
-            <ActivityIndicator
-                            Color="{StaticResource IndicatorColor}" 
-                            IsRunning="{Binding IsBusy}"
-                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.45}"
-                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.45}"/> 
-
-            
+            <ActivityIndicator Color="{StaticResource IndicatorColor}" IsRunning="{Binding IsBusy}" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.45}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.45}" />
         </RelativeLayout>
-   
-        
     </ContentPage.Content>
-    
-  
-    
 </ContentPage>
