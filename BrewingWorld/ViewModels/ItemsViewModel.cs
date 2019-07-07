@@ -10,7 +10,7 @@ using BrewingWorld.Views;
 
 namespace BrewingWorld.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class ItemsViewModel : BaseViewModel_old
     {
         public ObservableCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }

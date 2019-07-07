@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Name="this"
+             x:Class="BrewingWorld.Controls.BeerItemCustom">
+    
+    
+    <ContentView.Content>
+        <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="Gray">
+            <Image WidthRequest="40" HeightRequest="40" Aspect="AspectFit" Source="{Binding Source={x:Reference this}, Path= BeerItemData.Images.Medium}" />
+            <StackLayout Orientation="Vertical">
+                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Name}" />
+                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Style.ShortName}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+    
+    
+</ContentView>

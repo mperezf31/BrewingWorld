@@ -13,8 +13,8 @@ namespace BrewingWorld
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
+            // DependencyService.Register<MockDataStore>();
+            MainPage = new NavigationPage(new BeerListViewPage());
         }
 
         protected override void OnStart()
