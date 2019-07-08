@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="15" Padding="15">
-                <Image Source="{Binding BeerData.Images.Medium}" />
+                <Image Source="{Binding BeerData.Images, Converter={StaticResource ImageDefaultConverter}}" HeightRequest="130" Margin="0,5,0,5" x:Name="BeerImage"/>
                 <Frame Style="{StaticResource SectionStyleFrame}">
                     <Label Text="Description" Style="{StaticResource SectionStyleLabel}" />
                 </Frame>

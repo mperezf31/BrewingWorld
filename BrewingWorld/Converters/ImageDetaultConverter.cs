@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using BrewingWorld.Models;
 using Xamarin.Forms;
@@ -18,7 +17,7 @@ namespace BrewingWorld.Converters
             }
             else
             {
-                return images.Icon;
+                return images.Medium;
 
             }
         }
