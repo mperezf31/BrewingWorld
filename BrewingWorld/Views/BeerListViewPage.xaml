@@ -5,7 +5,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <RelativeLayout>
-            <ListView ItemsSource="{Binding Items}" ItemSelected="OnItemSelected" CachingStrategy="RecycleElement">
+            <ListView HasUnevenRows="true" ItemsSource="{Binding Items}" ItemSelected="OnItemSelected" CachingStrategy="RecycleElement">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

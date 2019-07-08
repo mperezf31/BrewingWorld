@@ -10,12 +10,19 @@
                 <Frame Style="{StaticResource SectionStyleFrame}">
                     <Label Text="Description" Style="{StaticResource SectionStyleLabel}" />
                 </Frame>
-                <Label Text="{Binding BeerData.Description}" FontSize="Small" />
+                <Label Text="{Binding BeerData.Description, Converter={StaticResource CheckNullProperty}}" FontSize="Small" />
                 <Frame Style="{StaticResource SectionStyleFrame}">
                     <Label Text="Style" Style="{StaticResource SectionStyleLabel}" />
                 </Frame>
-                <Label Text="{Binding BeerData.Style.Name}" FontSize="Medium" />
-                <Label Text="{Binding BeerData.Style.Description}" FontSize="Small" />
+                <Label Text="{Binding BeerData.Style.Name, Converter={StaticResource CheckNullProperty}}" FontSize="Small">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding BeerData.Style, TargetNullValue=''}" Value="">
+                            <Setter Property="Text" Value="N/D">
+                            </Setter>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label Text="{Binding BeerData.Style.Description, Converter={StaticResource CheckNullProperty}}" FontSize="Small" />
                 <Grid Padding="0" Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />

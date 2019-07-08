@@ -20,5 +20,7 @@
     <Folder Include="Constants\" />
     <Folder Include="Services\NavigationService\" />
     <Folder Include="Controls\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Images\" />
   </ItemGroup>
 </Project>

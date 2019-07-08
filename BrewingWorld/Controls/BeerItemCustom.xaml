@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Name="this"
-             x:Class="BrewingWorld.Controls.BeerItemCustom">
-    
-    
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Name="this" x:Class="BrewingWorld.Controls.BeerItemCustom">
     <ContentView.Content>
-        <StackLayout Orientation="Horizontal" Padding="5">
-
-            <Image WidthRequest="40" HeightRequest="40" Aspect="AspectFit" Source="{Binding Source={x:Reference this}, Path= BeerItemData.Images.Medium}" />
-            <StackLayout Orientation="Vertical"  Spacing="0" >
-                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Name}" FontAttributes="Bold"/>
-                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Style.ShortName}" FontSize="13" />
+        <StackLayout Orientation="Horizontal" Padding="7" VerticalOptions="Start">
+            <Image WidthRequest="55" HeightRequest="55" Source="{Binding Source={x:Reference this}, Path= BeerItemData.Images, Converter={StaticResource ImageDefaultConverter}}" />
+            <StackLayout Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Name}" FontSize="Medium" LineBreakMode="NoWrap" FontAttributes="Bold" Margin="0,6,0,0" />
+                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Style.ShortName}" FontSize="Small" LineBreakMode="NoWrap" />
             </StackLayout>
+            <Frame VerticalOptions="Start" HorizontalOptions="End" WidthRequest="50" CornerRadius="12" Padding="0,5,0,5" Margin="0,6,0,0" HasShadow="false" BackgroundColor="{StaticResource NavigationPrimary}">
+                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Abv, Converter={StaticResource BeerAbvConverter}}" FontSize="Small" TextColor="White" HorizontalOptions="Center" />
+            </Frame>
         </StackLayout>
     </ContentView.Content>
-    
-    
 </ContentView>
