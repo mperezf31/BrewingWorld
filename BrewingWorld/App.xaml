@@ -28,7 +28,6 @@
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
             <!--Converters-->
-            <converters:NullPropertyConverter x:Key="CheckNullProperty" />
             <converters:ImageDefaultConverter x:Key="ImageDefaultConverter" />
             <converters:BeerAbvConverter x:Key="BeerAbvConverter" />
             
