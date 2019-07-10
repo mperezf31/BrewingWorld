@@ -8,6 +8,7 @@ namespace BrewingWorld.Views
 
         BeerDetailViewModel viewModel;
 
+
         public BeerDetailPage(BeerDetailViewModel viewModel)
         {
             InitializeComponent();

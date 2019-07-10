@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:vm="clr-namespace:BrewingWorld.ViewModels" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BrewingWorld.Views.BreweryListViewPage" Title="{Binding Title}">
-    <ContentPage.BindingContext>
-        <vm:BreweryListViewModel />
-    </ContentPage.BindingContext>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:vm="clr-namespace:BrewingWorld.ViewModels" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BrewingWorld.Views.BreweryListViewPage" Title="{Binding Title}" Icon="tab_feed.png">
     <ContentPage.Content>
         <RelativeLayout>
             <ListView HasUnevenRows="true" ItemsSource="{Binding Items}" CachingStrategy="RecycleElement">

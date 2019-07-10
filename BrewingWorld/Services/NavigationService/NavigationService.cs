@@ -13,15 +13,8 @@ namespace BrewingWorld.Services
         public void NavigateToBeerDetail(Beer beer)
         {
 
-            Application.Current.MainPage.Navigation.PushAsync(new BeerDetailPage(new BeerDetailViewModel(beer)));
+            Application.Current.MainPage.Navigation.PushAsync(new DetailTabbedPage(new DetailTabbedViewModel(beer)));
         }
 
-        public void NavigateToBreweries(string beerId)
-        {
-            Application.Current.MainPage.Navigation.PushAsync(new BreweryListViewPage());
-            int stackSize = Application.Current.MainPage.Navigation.NavigationStack.Count;
-            BreweryListViewModel context = (BreweryListViewModel)Application.Current.MainPage.Navigation.NavigationStack[stackSize-1].BindingContext;
-            context.GetBreweries(beerId);
-        }
     }
 }

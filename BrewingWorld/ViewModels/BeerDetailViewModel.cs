@@ -1,7 +1,4 @@
-﻿using System.Windows.Input;
-using BrewingWorld.Models;
-using BrewingWorld.Services;
-using Xamarin.Forms;
+﻿using BrewingWorld.Models;
 
 namespace BrewingWorld.ViewModels
 {
@@ -10,12 +7,9 @@ namespace BrewingWorld.ViewModels
     public class BeerDetailViewModel : BaseViewModel
     {
 
-
-        private readonly INavigationService navigationService;
-
+        
 
         public Beer BeerData { get; set; }
-        public ICommand ShowBreweriesCommand { get; }
 
         public BeerDetailViewModel()
         {
@@ -25,15 +19,9 @@ namespace BrewingWorld.ViewModels
 
         public BeerDetailViewModel(Beer item = null)
         {
-            Title = item.Name;
+            Title = "Details";
             BeerData = item;
-
-            navigationService = DependencyService.Get<INavigationService>();
-            ShowBreweriesCommand = new Command(() => navigationService.NavigateToBreweries(item.Id));
-
-
         }
-
 
 
     }

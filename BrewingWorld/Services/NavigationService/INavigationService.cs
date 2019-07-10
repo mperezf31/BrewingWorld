@@ -6,9 +6,7 @@ namespace BrewingWorld.Services
     {
 
         void NavigateToBeerDetail(Beer beer);
-
-        void NavigateToBreweries(string beerId);
-
+        
     }
 
 
