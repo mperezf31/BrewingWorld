@@ -5,10 +5,10 @@ using Newtonsoft.Json;
 namespace BrewingWorld.Services
 
 {
-    public class BaseResponse<T>
+    public class BaseListResponse<T>
     {
         [JsonProperty(PropertyName = "data")]
-        public T Data { get; set; }
+        public List<T> Data { get; set; }
 
         [JsonProperty(PropertyName = "status")]
         public String Status { get; set; }

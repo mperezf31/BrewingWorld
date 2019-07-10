@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using BrewingWorld.Models;
+﻿using BrewingWorld.Models;
 
 namespace BrewingWorld.Services
 {
@@ -9,6 +6,9 @@ namespace BrewingWorld.Services
     {
 
         void NavigateToBeerDetail(Beer beer);
+
+        void NavigateToBreweries(string beerId);
+
     }
 
 

@@ -7,7 +7,7 @@
                 <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Name}" FontSize="Medium" LineBreakMode="NoWrap" FontAttributes="Bold" Margin="0,6,0,0" />
                 <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Style.ShortName}" FontSize="Small" LineBreakMode="NoWrap" />
             </StackLayout>
-            <Frame VerticalOptions="Start" HorizontalOptions="End" WidthRequest="50" CornerRadius="12" Padding="0,5,0,5" Margin="0,6,0,0" HasShadow="false" BackgroundColor="{StaticResource NavigationPrimary}">
+            <Frame VerticalOptions="Start" HorizontalOptions="End" WidthRequest="50" CornerRadius="12" Padding="0,5,0,5" Margin="0,6,0,0" HasShadow="false" BackgroundColor="Gray">
                 <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Abv, Converter={StaticResource BeerAbvConverter}}" FontSize="Small" TextColor="White" HorizontalOptions="Center" />
             </Frame>
         </StackLayout>

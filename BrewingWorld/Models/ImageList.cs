@@ -11,8 +11,8 @@ namespace BrewingWorld.Models
         [JsonProperty(PropertyName = "medium")]
         public string Medium { get; set; }
 
-        [JsonProperty(PropertyName = "large")]
-        public string Large { get; set; }
+        [JsonProperty(PropertyName = "squareMedium")]
+        public string SquareMedium { get; set; }
 
 
     }

@@ -52,7 +52,7 @@ namespace BrewingWorld.ViewModels
             IsBusy = true;
 
 
-            BaseResponse<Beer> response = await restDataService.GetBeerList();
+            BaseListResponse<Beer> response = await restDataService.GetBeerList();
             if (string.IsNullOrEmpty(response.ErrorMessage))
             {
 

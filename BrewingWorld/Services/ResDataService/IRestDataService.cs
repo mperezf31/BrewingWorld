@@ -8,7 +8,10 @@ namespace BrewingWorld.Services
     public interface IRestDataService
     {
 
-        Task<BaseResponse<Beer>> GetBeerList();
+        Task<BaseListResponse<Beer>> GetBeerList();
+
+        Task<BaseListResponse<Brewery>> GetBreweriesList(string beerId);
+
     }
 
 

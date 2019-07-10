@@ -27,7 +27,7 @@ namespace BrewingWorld.ViewModels
 
         public async void GetBeers() {
 
-           BaseResponse<Beer> response = await restDataService.GetBeerList();
+           BaseListResponse<Beer> response = await restDataService.GetBeerList();
             if (string.IsNullOrEmpty(response.ErrorMessage)) {
                 Debug.WriteLine(response.Data);
 

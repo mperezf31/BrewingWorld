@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:vm="clr-namespace:BrewingWorld.ViewModels" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BrewingWorld.Views.BreweryListViewPage" Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:BreweryListViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <RelativeLayout>
+            <ListView HasUnevenRows="true" ItemsSource="{Binding Items}" CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame>
+                                <StackLayout Orientation="Vertical" Padding="7" VerticalOptions="Start">
+                                    <StackLayout Orientation="Horizontal" Padding="7" VerticalOptions="Start">
+                                        <Image WidthRequest="55" HeightRequest="55" Aspect="AspectFit" Source="{Binding Images.SquareMedium}" />
+                                        <StackLayout Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
+                                            <Label Text="{Binding Name}" FontSize="Medium" LineBreakMode="NoWrap" FontAttributes="Bold" Margin="0,6,0,0" />
+                                            <Label Text="{Binding Website}" FontSize="Small" LineBreakMode="NoWrap" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label Text="{Binding Description}" FontSize="Small" />
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ActivityIndicator Color="{StaticResource IndicatorColor}" IsRunning="{Binding IsBusy}" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.45}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.45}" />
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>
