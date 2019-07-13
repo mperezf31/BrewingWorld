@@ -2,6 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:converters="clr-namespace:BrewingWorld.Converters" xmlns:bh="clr-namespace:BrewingWorld.Behaviors" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BrewingWorld.Views.BreweryListViewPage" Title="{Binding Title}" Icon="tab_feed.png">
     <ContentPage.Resources>
         <ResourceDictionary>
+            <Style x:Key="BreweryItemImage" TargetType="Image">
+                <Setter Property="WidthRequest" Value="55" />
+                <Setter Property="HeightRequest" Value="55" />
+                <Setter Property="Aspect" Value="AspectFit" />
+            </Style>
+            <Style x:Key="BreweryItemTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style x:Key="BreweryItemEstablished" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="LineBreakMode" Value="NoWrap" />
+            </Style>
+            <Style x:Key="BreweryItemDescription" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+            <!--Converters-->
             <converters:EstablishedConverter x:Key="EstablishedConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -17,13 +35,13 @@
                             <Frame Padding="5" Margin="10" HasShadow="true">
                                 <StackLayout Orientation="Vertical" Padding="7" VerticalOptions="Start">
                                     <StackLayout Orientation="Horizontal" Padding="7" VerticalOptions="Start">
-                                        <Image WidthRequest="55" HeightRequest="55" Aspect="AspectFit" Source="{Binding Images.SquareMedium}" />
+                                        <Image Style="{StaticResource BreweryItemImage}" Source="{Binding Images.SquareMedium}" />
                                         <StackLayout Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
-                                            <Label Text="{Binding Name}" FontSize="Medium" LineBreakMode="NoWrap" FontAttributes="Bold" Margin="0,6,0,0" />
-                                            <Label Text="{Binding Established, Converter={StaticResource EstablishedConverter} }" FontSize="Small" LineBreakMode="NoWrap" />
+                                            <Label Text="{Binding Name}" Style="{StaticResource BreweryItemTitle}" FontAttributes="Bold" Margin="0,6,0,0" />
+                                            <Label Text="{Binding Established, Converter={StaticResource EstablishedConverter} }" Style="{StaticResource BreweryItemEstablished}" />
                                         </StackLayout>
                                     </StackLayout>
-                                    <Label Text="{Binding Description}" FontSize="Small" />
+                                    <Label Text="{Binding Description}" Style="{StaticResource BreweryItemDescription}" />
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
