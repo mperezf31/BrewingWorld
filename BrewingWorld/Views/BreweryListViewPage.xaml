@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:vm="clr-namespace:BrewingWorld.ViewModels" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BrewingWorld.Views.BreweryListViewPage" Title="{Binding Title}" Icon="tab_feed.png">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:converters="clr-namespace:BrewingWorld.Converters" xmlns:bh="clr-namespace:BrewingWorld.Behaviors" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BrewingWorld.Views.BreweryListViewPage" Title="{Binding Title}" Icon="tab_feed.png">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:EstablishedConverter x:Key="EstablishedConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <RelativeLayout>
-            <ListView HasUnevenRows="true" ItemsSource="{Binding Items}" CachingStrategy="RecycleElement">
+        <RelativeLayout BackgroundColor="Lime">
+            <ListView HasUnevenRows="true" ItemsSource="{Binding Items}" CachingStrategy="RecycleElement" SeparatorVisibility="None" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+                <ListView.Behaviors>
+                    <bh:BreweryOpenWebsiteBehavior />
+                </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame>
+                            <Frame Padding="5" Margin="10" HasShadow="true">
                                 <StackLayout Orientation="Vertical" Padding="7" VerticalOptions="Start">
                                     <StackLayout Orientation="Horizontal" Padding="7" VerticalOptions="Start">
                                         <Image WidthRequest="55" HeightRequest="55" Aspect="AspectFit" Source="{Binding Images.SquareMedium}" />
                                         <StackLayout Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
                                             <Label Text="{Binding Name}" FontSize="Medium" LineBreakMode="NoWrap" FontAttributes="Bold" Margin="0,6,0,0" />
-                                            <Label Text="{Binding Website}" FontSize="Small" LineBreakMode="NoWrap" />
+                                            <Label Text="{Binding Established, Converter={StaticResource EstablishedConverter} }" FontSize="Small" LineBreakMode="NoWrap" />
                                         </StackLayout>
                                     </StackLayout>
                                     <Label Text="{Binding Description}" FontSize="Small" />

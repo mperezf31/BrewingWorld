@@ -1,10 +1,9 @@
-﻿using BrewingWorld.Models;
-using BrewingWorld.ViewModels;
+﻿using BrewingWorld.ViewModels;
 using Xamarin.Forms;
 
 namespace BrewingWorld.Views
 {
-    public partial class DetailTabbedPage : TabbedPage
+    public class DetailTabbedPage : TabbedPage
     {
 
         public DetailTabbedPage(DetailTabbedViewModel viewModel)

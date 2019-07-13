@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using BrewingWorld.Models;
 using BrewingWorld.Services;
 using Xamarin.Forms;
@@ -17,7 +15,6 @@ namespace BrewingWorld.ViewModels
 
         public Command LoadItemsCommand;
         private readonly IRestDataService restDataService;
-        private readonly INavigationService navigationService;
 
 
         public BeerListViewModel()
@@ -29,18 +26,10 @@ namespace BrewingWorld.ViewModels
 
             LoadItemsCommand = new Command(ExecuteLoadBeersCommand);
             restDataService = DependencyService.Get<IRestDataService>();
-            navigationService = DependencyService.Get<INavigationService>();
-
         }
 
       
         public ObservableCollection<Beer> Items { get; set; }
-
-
-        public void ItemSelected(Beer beer)
-        {
-            navigationService.NavigateToBeerDetail(beer);
-        }
 
 
         private async void ExecuteLoadBeersCommand()

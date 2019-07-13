@@ -20,5 +20,10 @@ namespace BrewingWorld.Models
         [JsonProperty(PropertyName = "website")]
         public string Website { get; set; }
 
+        [JsonProperty(PropertyName = "established")]
+        public string Established { get; set; }
+
+
+
     }
 }
