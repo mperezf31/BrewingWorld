@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using BrewingWorld.Models;
 using BrewingWorld.Services;
 using Xamarin.Forms;
@@ -13,8 +14,8 @@ namespace BrewingWorld.ViewModels
     {
 
 
-        public Command LoadItemsCommand;
         private readonly IRestDataService restDataService;
+        bool isRrefresh = false;
 
 
         public BeerListViewModel()
@@ -24,21 +25,44 @@ namespace BrewingWorld.ViewModels
 
             Items = new ObservableCollection<Beer>();
 
-            LoadItemsCommand = new Command(ExecuteLoadBeersCommand);
+            LoadItemsCommand = new Command(() => ExecuteLoadBeersCommand(false));
+            RrefreshItemsCommand = new Command(() => ExecuteLoadBeersCommand(true));
+
+
             restDataService = DependencyService.Get<IRestDataService>();
+
         }
 
-      
+
         public ObservableCollection<Beer> Items { get; set; }
+        public Command LoadItemsCommand { get; set; }
+        public Command RrefreshItemsCommand { get; set; }
 
 
-        private async void ExecuteLoadBeersCommand()
+        public bool IsRrefresh
+        {
+            get { return isRrefresh; }
+            set
+            {
+                isRrefresh = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private async void ExecuteLoadBeersCommand(bool TryRefresh)
         {
 
-            if (IsBusy)
+            if (IsBusy || IsRrefresh)
                 return;
 
-            IsBusy = true;
+            if (TryRefresh)
+            {
+                IsRrefresh = true;
+            }
+            else
+            {
+                IsBusy = true;
+            }
 
 
             BaseListResponse<Beer> response = await restDataService.GetBeerList();
@@ -58,10 +82,12 @@ namespace BrewingWorld.ViewModels
                 Debug.WriteLine(response.ErrorMessage);
             }
 
+
+            IsRrefresh = false;
             IsBusy = false;
 
         }
 
-      
     }
+
 }
