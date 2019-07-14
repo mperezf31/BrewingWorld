@@ -18,11 +18,20 @@ namespace BrewingWorld.Services
                 BaseAddress = new Uri(Constants.BaseUrl)
             };
 
+            try
+            {
+                HttpResponseMessage message = await client.GetAsync(Constants.GetBeersUrl);
+                string response = await message.Content.ReadAsStringAsync();
+                BaseListResponse<Beer> result = JsonConvert.DeserializeObject<BaseListResponse<Beer>>(response);
 
-            HttpResponseMessage message = await client.GetAsync(Constants.GetBeersUrl);
-            string response = await message.Content.ReadAsStringAsync();
-            BaseListResponse<Beer> result = JsonConvert.DeserializeObject<BaseListResponse<Beer>>(response);
-            return result;
+                return result;
+
+            }
+            catch (Exception)
+            {
+                return new BaseListResponse<Beer>() { ErrorMessage = "A connection error has occurred" };
+            }
+
         }
 
         public async Task<BaseListResponse<Brewery>> GetBreweriesList(string beerId)
@@ -35,35 +44,43 @@ namespace BrewingWorld.Services
 
             String url = String.Format(Constants.GetBreweriesUrl, beerId);
 
-            HttpResponseMessage message = await client.GetAsync(url);
-            string response = await message.Content.ReadAsStringAsync();
-            BaseListResponse<Brewery> result = JsonConvert.DeserializeObject<BaseListResponse<Brewery>>(response);
-
-            if (result != null && result.Data != null)
+            try
             {
-                //Get Brewery details
-                List<Task<BaseResponse<Brewery>>> tasks = new List<Task<BaseResponse<Brewery>>>();
 
-                foreach (var Brewery in result.Data)
+                HttpResponseMessage message = await client.GetAsync(url);
+                string response = await message.Content.ReadAsStringAsync();
+                BaseListResponse<Brewery> result = JsonConvert.DeserializeObject<BaseListResponse<Brewery>>(response);
+
+                if (result != null && result.Data != null)
                 {
-                    tasks.Add(GetBreweryDetail(Brewery.Id));
-                }
+                    //Get Brewery details
+                    List<Task<BaseResponse<Brewery>>> tasks = new List<Task<BaseResponse<Brewery>>>();
 
-                var responseTasks = await Task.WhenAll(tasks);
-                result.Data.Clear();
-
-                foreach (var responseBreweryDetail in responseTasks)
-                {
-                    if (result != null && result.Data != null)
+                    foreach (var Brewery in result.Data)
                     {
-                        result.Data.Add(responseBreweryDetail.Data);
+                        tasks.Add(GetBreweryDetail(Brewery.Id));
                     }
+
+                    var responseTasks = await Task.WhenAll(tasks);
+                    result.Data.Clear();
+
+                    foreach (var responseBreweryDetail in responseTasks)
+                    {
+                        if (result != null && result.Data != null)
+                        {
+                            result.Data.Add(responseBreweryDetail.Data);
+                        }
+                    }
+
                 }
+                return result;
 
             }
-
-            return result;
-
+            catch (Exception)
+            {
+                return new BaseListResponse<Brewery>() { ErrorMessage = "A connection error has occurred" };
+            }
+            
         }
 
 

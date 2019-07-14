@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using BrewingWorld.Models;
 using BrewingWorld.Services;
 using Xamarin.Forms;
@@ -13,11 +11,6 @@ namespace BrewingWorld.ViewModels
 
     public class BeerListViewModel : BaseViewModel
     {
-
-
-        private readonly IRestDataService restDataService;
-        private readonly ISettingsService settingsService;
-        private readonly INavigationService navigationService;
 
         private bool isRrefresh = false;
 
@@ -31,10 +24,6 @@ namespace BrewingWorld.ViewModels
 
             LoadItemsCommand = new Command(() => ExecuteLoadBeersCommand(false));
             RrefreshItemsCommand = new Command(() => ExecuteLoadBeersCommand(true));
-
-            settingsService = DependencyService.Get<ISettingsService>();
-            navigationService = DependencyService.Get<INavigationService>();
-            restDataService = DependencyService.Get<IRestDataService>();
         }
 
 
@@ -57,8 +46,8 @@ namespace BrewingWorld.ViewModels
         {
             item.Visited = true;
 
-            settingsService.AddBeerVisited(item.Id);
-            navigationService.NavigateToBeerDetail(item);
+            SettingsService.AddBeerVisited(item.Id);
+            NavigationService.NavigateToBeerDetail(item);
 
         }
 
@@ -78,7 +67,7 @@ namespace BrewingWorld.ViewModels
             }
 
 
-            BaseListResponse<Beer> response = await restDataService.GetBeerList();
+            BaseListResponse<Beer> response = await RestDataService.GetBeerList();
             if (string.IsNullOrEmpty(response.ErrorMessage))
             {
 
@@ -86,19 +75,30 @@ namespace BrewingWorld.ViewModels
                 List<Beer> items = response.Data;
                 foreach (var item in items)
                 {
-                    item.Visited = settingsService.BeerWasVisited(item.Id);
+                    item.Visited = SettingsService.BeerWasVisited(item.Id);
                     Items.Add(item);
                 }
 
             }
             else
             {
-                Debug.WriteLine(response.ErrorMessage);
+                ShowErrorConection(response.ErrorMessage);
             }
 
 
             IsRrefresh = false;
             IsBusy = false;
+
+        }
+
+
+        private async void ShowErrorConection(string msg)
+        {
+            var result = await Application.Current.MainPage.DisplayAlert("Error", msg, "Retry", "Cancel");
+            if (result == true)
+            {
+                LoadItemsCommand.Execute(null);
+            }
 
         }
 

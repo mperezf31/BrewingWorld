@@ -1,4 +1,5 @@
 ﻿
+using BrewingWorld.Services;
 using Xamarin.Forms;
 
 namespace BrewingWorld.ViewModels
@@ -8,8 +9,7 @@ namespace BrewingWorld.ViewModels
 
         bool isBusy = false;
         string title = string.Empty;
-
-
+       
         public bool IsBusy
         {
             get { return isBusy; }
@@ -31,6 +31,9 @@ namespace BrewingWorld.ViewModels
             }
         }
 
+        public ISettingsService SettingsService => DependencyService.Get<ISettingsService>();
+        public INavigationService NavigationService => DependencyService.Get<INavigationService>();
+        public IRestDataService RestDataService => DependencyService.Get<IRestDataService>();
 
     }
 }

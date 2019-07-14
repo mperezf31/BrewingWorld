@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Windows.Input;
 using BrewingWorld.Models;
 using BrewingWorld.Services;
 using Xamarin.Forms;
@@ -14,22 +12,14 @@ namespace BrewingWorld.ViewModels
     public class BreweryListViewModel : BaseViewModel
     {
 
-        public ICommand OpenWebCommand { get; }
-
-        private readonly IRestDataService restDataService;
 
         public BreweryListViewModel(string beerId)
         {
             Title = "Breweries";
             Items = new ObservableCollection<Brewery>();
-            restDataService = DependencyService.Get<IRestDataService>();
-
-         //   OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
 
             GetBreweries(beerId);
         }
-
-
 
 
         public ObservableCollection<Brewery> Items { get; set; }
@@ -44,7 +34,7 @@ namespace BrewingWorld.ViewModels
             IsBusy = true;
 
 
-            BaseListResponse<Brewery> response = await restDataService.GetBreweriesList(beerId);
+            BaseListResponse<Brewery> response = await RestDataService.GetBreweriesList(beerId);
             if (string.IsNullOrEmpty(response.ErrorMessage))
             {
 
@@ -58,11 +48,16 @@ namespace BrewingWorld.ViewModels
             }
             else
             {
-                Debug.WriteLine(response.ErrorMessage);
+                ShowErrorConection(response.ErrorMessage);
             }
 
             IsBusy = false;
 
+        }
+
+        private async void ShowErrorConection(string msg)
+        {
+            await Application.Current.MainPage.DisplayAlert("Error", msg, "Ok");     
         }
 
     }
