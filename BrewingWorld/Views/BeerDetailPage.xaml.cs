@@ -6,8 +6,7 @@ namespace BrewingWorld.Views
     public partial class BeerDetailPage : ContentPage
     {
 
-        BeerDetailViewModel viewModel;
-
+        private BeerDetailViewModel viewModel;
 
         public BeerDetailPage(BeerDetailViewModel viewModel)
         {

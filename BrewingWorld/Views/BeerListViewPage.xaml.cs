@@ -1,4 +1,5 @@
-﻿using BrewingWorld.ViewModels;
+﻿using BrewingWorld.Models;
+using BrewingWorld.ViewModels;
 using Xamarin.Forms;
 
 namespace BrewingWorld.Views
@@ -7,8 +8,7 @@ namespace BrewingWorld.Views
     public partial class BeerListViewPage : ContentPage
     {
 
-
-        BeerListViewModel viewModel;
+       private BeerListViewModel viewModel;
 
 
         public BeerListViewPage()
@@ -17,7 +17,16 @@ namespace BrewingWorld.Views
 
             BindingContext = viewModel = new BeerListViewModel();
 
+        }
 
+        void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            if (!(args.SelectedItem is Beer item))
+                return;
+
+            viewModel.SelectedBeer(item);
+            // Manually deselect item.
+            ((ListView)sender).SelectedItem = null;
         }
 
         protected override void OnAppearing()

@@ -1,10 +1,15 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
 namespace BrewingWorld.Models
 {
-    public class Beer
+    public class Beer : INotifyPropertyChanged
     {
+
+        private Boolean visited = false;
+
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
@@ -23,6 +28,26 @@ namespace BrewingWorld.Models
         [JsonProperty(PropertyName = "style")]
         public BeerStyle Style { get; set; }
 
+        public bool Visited
+        {
+            get
+            {
+                return visited;
+            }
+            set
+            {
+                visited = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
     }
 }

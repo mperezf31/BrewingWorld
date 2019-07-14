@@ -5,14 +5,12 @@ using Xamarin.Forms;
 
 namespace BrewingWorld.Behaviors
 {
-    public class BeerDetailNavigationBehavior : Behavior<ListView>
+    public class BreweryOpenWebsiteBehavior : Behavior<ListView>
     {
-        private INavigationService navigationService;
 
         protected override void OnAttachedTo(ListView bindable)
         {
             base.OnAttachedTo(bindable);
-            navigationService = DependencyService.Get<INavigationService>();
 
             bindable.ItemSelected += OnItemSelected;
         }
@@ -26,10 +24,10 @@ namespace BrewingWorld.Behaviors
 
         void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            if (!(args.SelectedItem is Beer item))
+            if (!(args.SelectedItem is Brewery item) || string.IsNullOrEmpty(item.Website))
                 return;
 
-            navigationService.NavigateToBeerDetail(item);
+            Device.OpenUri(new Uri(item.Website));
 
             // Manually deselect item.
             ((ListView)sender).SelectedItem = null;

@@ -5,6 +5,8 @@ namespace BrewingWorld.Controls
 {
     public partial class BeerItemCustom : ContentView
     {
+
+
         public BeerItemCustom()
         {
             InitializeComponent();
@@ -15,18 +17,17 @@ namespace BrewingWorld.Controls
         public Beer BeerItemData
         {
 
-            get { return (Beer)GetValue(BeerItemDataProperty); }
-            set { SetValue(BeerItemDataProperty, value); }
+            get
+            {
+                return (Beer)GetValue(BeerItemDataProperty);
+            }
+
+            set
+            {
+                SetValue(BeerItemDataProperty, value);
+            }
 
         }
-
-        public bool Visited
-        {
-
-            get { return true; }
-
-        }
-
 
     }
 }

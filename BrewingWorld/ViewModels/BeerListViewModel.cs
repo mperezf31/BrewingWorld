@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -15,7 +16,10 @@ namespace BrewingWorld.ViewModels
 
 
         private readonly IRestDataService restDataService;
-        bool isRrefresh = false;
+        private readonly ISettingsService settingsService;
+        private readonly INavigationService navigationService;
+
+        private bool isRrefresh = false;
 
 
         public BeerListViewModel()
@@ -28,9 +32,9 @@ namespace BrewingWorld.ViewModels
             LoadItemsCommand = new Command(() => ExecuteLoadBeersCommand(false));
             RrefreshItemsCommand = new Command(() => ExecuteLoadBeersCommand(true));
 
-
+            settingsService = DependencyService.Get<ISettingsService>();
+            navigationService = DependencyService.Get<INavigationService>();
             restDataService = DependencyService.Get<IRestDataService>();
-
         }
 
 
@@ -47,6 +51,15 @@ namespace BrewingWorld.ViewModels
                 isRrefresh = value;
                 OnPropertyChanged();
             }
+        }
+
+        internal void SelectedBeer(Beer item)
+        {
+            item.Visited = true;
+
+            settingsService.AddBeerVisited(item.Id);
+            navigationService.NavigateToBeerDetail(item);
+
         }
 
         private async void ExecuteLoadBeersCommand(bool TryRefresh)
@@ -73,6 +86,7 @@ namespace BrewingWorld.ViewModels
                 List<Beer> items = response.Data;
                 foreach (var item in items)
                 {
+                    item.Visited = settingsService.BeerWasVisited(item.Id);
                     Items.Add(item);
                 }
 

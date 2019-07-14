@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.555618" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
   <ItemGroup>
@@ -25,5 +25,6 @@
     <Folder Include="old\ViewModels\" />
     <Folder Include="old\Views\" />
     <Folder Include="Behaviors\" />
+    <Folder Include="Services\SettingsService\" />
   </ItemGroup>
 </Project>

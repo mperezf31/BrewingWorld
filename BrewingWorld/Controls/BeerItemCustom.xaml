@@ -37,7 +37,7 @@
             <StackLayout Orientation="Vertical" Spacing="3" HorizontalOptions="FillAndExpand">
                 <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Name}" Style="{StaticResource BeerItemTitle}" Margin="0,6,0,0">
                     <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference this}, Path= Visited}" Value="True">
+                        <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference this}, Path= BeerItemData.Visited}" Value="True">
                             <Setter Property="TextColor" Value="Gray">
                             </Setter>
                         </DataTrigger>
