@@ -7,22 +7,23 @@
                 <Setter Property="HeightRequest" Value="55" />
             </Style>
             <Style x:Key="BeerItemTitle" TargetType="Label">
-                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontSize" Value="16" />
                 <Setter Property="LineBreakMode" Value="NoWrap" />
                 <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#363636" />
             </Style>
             <Style x:Key="BeerItemStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="FontSize" Value="13" />
                 <Setter Property="LineBreakMode" Value="NoWrap" />
             </Style>
             <Style x:Key="BeerItemAbv" TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
             <Style x:Key="BeerAbvBg" TargetType="Frame">
                 <Setter Property="WidthRequest" Value="50" />
-                <Setter Property="CornerRadius" Value="12" />
+                <Setter Property="CornerRadius" Value="13" />
                 <Setter Property="HasShadow" Value="False" />
                 <Setter Property="BackgroundColor" Value="Gray" />
             </Style>
@@ -33,11 +34,18 @@
     <ContentView.Content>
         <StackLayout Orientation="Horizontal" Padding="7" VerticalOptions="Start">
             <Image Style="{StaticResource BeerItemImage}" Source="{Binding Source={x:Reference this}, Path= BeerItemData.Images, Converter={StaticResource ImageDefaultConverter}}" />
-            <StackLayout Orientation="Vertical" Spacing="5" HorizontalOptions="FillAndExpand">
-                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Name}" Style="{StaticResource BeerItemTitle}" Margin="0,6,0,0" />
+            <StackLayout Orientation="Vertical" Spacing="3" HorizontalOptions="FillAndExpand">
+                <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Name}" Style="{StaticResource BeerItemTitle}" Margin="0,6,0,0">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference this}, Path= Visited}" Value="True">
+                            <Setter Property="TextColor" Value="Gray">
+                            </Setter>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
                 <Label Text="{Binding Source={x:Reference this}, Path= BeerItemData.Style.ShortName}" Style="{StaticResource BeerItemStyle}" />
             </StackLayout>
-            <Frame Style="{StaticResource BeerAbvBg}" VerticalOptions="Start" HorizontalOptions="End" Padding="0,5,0,5" Margin="0,6,0,0">
+            <Frame Style="{StaticResource BeerAbvBg}" VerticalOptions="Start" HorizontalOptions="End" Padding="0,3,0,3" Margin="0,6,0,0">
                 <Label Style="{StaticResource BeerItemAbv}" Text="{Binding Source={x:Reference this}, Path= BeerItemData.Abv, Converter={StaticResource BeerAbvConverter}}" />
             </Frame>
         </StackLayout>

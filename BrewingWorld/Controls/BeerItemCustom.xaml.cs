@@ -20,5 +20,13 @@ namespace BrewingWorld.Controls
 
         }
 
+        public bool Visited
+        {
+
+            get { return true; }
+
+        }
+
+
     }
 }

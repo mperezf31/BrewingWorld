@@ -24,7 +24,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <RelativeLayout BackgroundColor="Lime">
+        <RelativeLayout>
             <ListView HasUnevenRows="true" ItemsSource="{Binding Items}" CachingStrategy="RecycleElement" SeparatorVisibility="None" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
                 <ListView.Behaviors>
                     <bh:BreweryOpenWebsiteBehavior />

@@ -5,7 +5,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <RelativeLayout>
-            <ListView HasUnevenRows="true" ItemsSource="{Binding Items}" RefreshCommand="{Binding RrefreshItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsRrefresh, Mode=OneWay}" CachingStrategy="RecycleElement" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+            <ListView HasUnevenRows="true" ItemsSource="{Binding Items}" RefreshCommand="{Binding RrefreshItemsCommand}" IsPullToRefreshEnabled="true" RefreshControlColor="{StaticResource IndicatorColor}" IsRefreshing="{Binding IsRrefresh, Mode=OneWay}" CachingStrategy="RecycleElement" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
                 <ListView.Behaviors>
                     <bh:BeerDetailNavigationBehavior />
                 </ListView.Behaviors>
