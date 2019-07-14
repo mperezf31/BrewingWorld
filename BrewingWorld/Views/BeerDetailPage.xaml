@@ -18,8 +18,8 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="15" Padding="15">
-                <Image Source="{Binding BeerData.Images, Converter={StaticResource ImageDefaultConverter}}" HeightRequest="130" Margin="0,5,0,5" x:Name="BeerImage" />
-                <Frame Style="{StaticResource SectionStyleFrame}">
+                <Image ScaleX="0" Source="{Binding BeerData.Images, Converter={StaticResource ImageDefaultConverter}}" HeightRequest="130" Margin="0,5,0,5" x:Name="BeerImage" />
+                <Frame x:Name="Description" Style="{StaticResource SectionStyleFrame}">
                     <Label Text="Description" Style="{StaticResource SectionStyleLabel}" />
                 </Frame>
                 <Label Text="{Binding BeerData.Description}" FontSize="Small">
@@ -30,7 +30,7 @@
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Frame Style="{StaticResource SectionStyleFrame}">
+                <Frame x:Name="Style" Style="{StaticResource SectionStyleFrame}">
                     <Label Text="Style" Style="{StaticResource SectionStyleLabel}" />
                 </Frame>
                 <Label Text="{Binding BeerData.Style.Name}" FontSize="Small" FontAttributes="Bold">
