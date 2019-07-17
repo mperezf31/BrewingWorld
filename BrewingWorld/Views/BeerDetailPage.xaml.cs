@@ -26,8 +26,8 @@ namespace BrewingWorld.Views
             Animation animationDescription = new Animation(a => Description.Scale = a, 0.8, 1);
             animationDescription.Commit(this, "DescriptionAnimation", 5, 800, Easing.BounceOut, (arg1, arg2) => { Description.Scale = 1; }, () => false);
 
-            Animation animationStyle = new Animation(a => Style.Scale = a, 0.8, 1);
-            animationStyle.Commit(this, "StyleAnimation", 5, 800, Easing.BounceOut, (arg1, arg2) => { Style.Scale = 1; }, () => false);
+            Animation animationStyle = new Animation(a => StyleFrame.Scale = a, 0.8, 1);
+            animationStyle.Commit(this, "StyleAnimation", 5, 800, Easing.BounceOut, (arg1, arg2) => { StyleFrame.Scale = 1; }, () => false);
 
         }
 

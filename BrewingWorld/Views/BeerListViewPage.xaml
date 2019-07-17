@@ -5,8 +5,15 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <RelativeLayout>
-            <ListView HasUnevenRows="true" ItemSelected="OnItemSelected" ItemsSource="{Binding Items}" RefreshCommand="{Binding RrefreshItemsCommand}" IsPullToRefreshEnabled="true" RefreshControlColor="{StaticResource IndicatorColor}" IsRefreshing="{Binding IsRrefresh, Mode=OneWay}" CachingStrategy="RecycleElement" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">          
-                <ListView.ItemTemplate><DataTemplate><ViewCell><controls:BeerItemCustom BeerItemData="{Binding .}" /></ViewCell></DataTemplate></ListView.ItemTemplate></ListView>
+            <ListView HasUnevenRows="true" ItemSelected="OnItemSelected" ItemsSource="{Binding Items}" RefreshCommand="{Binding RrefreshItemsCommand}" IsPullToRefreshEnabled="true" RefreshControlColor="{StaticResource IndicatorColor}" IsRefreshing="{Binding IsRrefresh, Mode=OneWay}" CachingStrategy="RecycleElement" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <controls:BeerItemCustom BeerItemData="{Binding .}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <ActivityIndicator Color="{StaticResource IndicatorColor}" IsRunning="{Binding IsBusy}" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.45}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.45}" />
         </RelativeLayout>
     </ContentPage.Content>

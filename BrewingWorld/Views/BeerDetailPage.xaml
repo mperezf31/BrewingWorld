@@ -30,7 +30,7 @@
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                <Frame x:Name="Style" Style="{StaticResource SectionStyleFrame}">
+                <Frame x:Name="StyleFrame" Style="{StaticResource SectionStyleFrame}">
                     <Label Text="Style" Style="{StaticResource SectionStyleLabel}" />
                 </Frame>
                 <Label Text="{Binding BeerData.Style.Name}" FontSize="Small" FontAttributes="Bold">

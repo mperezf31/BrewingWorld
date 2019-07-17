@@ -21,9 +21,6 @@
     <Folder Include="Services\NavigationService\" />
     <Folder Include="Controls\" />
     <Folder Include="Converters\" />
-    <Folder Include="old\" />
-    <Folder Include="old\ViewModels\" />
-    <Folder Include="old\Views\" />
     <Folder Include="Behaviors\" />
     <Folder Include="Services\SettingsService\" />
   </ItemGroup>
